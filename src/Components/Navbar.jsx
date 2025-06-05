@@ -26,7 +26,7 @@ export default function Navbar({ query, setQuery }) {
             const response = await fetch(url)
             if (response.ok) {
                 const data = await response.json()
-                setSuggestions(data.items.slice(0, 5))
+                setSuggestions(data.items.slice(0, 6))
             } else {
                 console.log('response is not ok')
             }
