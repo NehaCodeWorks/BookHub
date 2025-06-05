@@ -1,0 +1,61 @@
+.swiper {
+  width: 100vw;
+  height: 100vh;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  /* align content to top */
+  padding-bottom: 2rem;
+  padding-top: 1rem;
+}
+
+.swiper-slide img {
+  width: 100vw;
+  height: 650px;
+  border-radius: 10px;
+  margin-top: 2rem;
+}
+
+.card-body .btn {
+  padding: 0.5rem;
+}
+
+#book-container {
+  transition: all 0.6s ease-in-out;
+}
+
+#book-container img {
+  transition: transform 0.3s ease-in-out;
+
+}
+
+#book-container img:hover {
+  transform: scale(1.04);
+}
+
+/*  */
+.suggestion-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    width: 100%;
+    max-height: 300px;
+    
+    padding: 5px;
+}
+
+.autosuggestion {
+    display: block;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.autosuggestion:hover {
+    background-color: #f2f2f2;
+}
