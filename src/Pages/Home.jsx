@@ -47,7 +47,7 @@ export default function Home() {
                             </div>
                             <div className="col-md-6 text-center">
                                 <div className="image-holder">
-                                    <img src="/img/attitude.jpg" className="img-fluid border rounded shadow-sm " alt="banner"
+                                    <img src="/Img/attitude.jpg" className="img-fluid border rounded shadow-sm " alt="banner"
                                         style={{ height: '550px', width: '350px' }}
                                     />
                                 </div>
@@ -67,7 +67,7 @@ export default function Home() {
                             </div>
                             <div className="col-md-6 text-center">
                                 <div className="image-holder">
-                                    <img src="/img/harry.jpg" className="img-fluid border rounded shadow-sm " alt="banner"
+                                    <img src="/Img/harry.jpg" className="img-fluid border rounded shadow-sm " alt="banner"
                                         style={{ height: '550px', width: '350px' }}
                                     />
                                 </div>
@@ -87,7 +87,7 @@ export default function Home() {
                             </div>
                             <div className="col-md-6 text-center">
                                 <div className="image-holder">
-                                    <img src="/img/powersubconsious.jpg" className="img-fluid border rounded shadow-sm " alt="banner"
+                                    <img src="/Img/powersubconsious.jpg" className="img-fluid border rounded shadow-sm " alt="banner"
                                         style={{ height: '550px', width: '350px' }}
                                     />
                                 </div>
