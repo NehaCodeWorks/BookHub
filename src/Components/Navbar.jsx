@@ -1,15 +1,18 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { CartContext } from './CartContext'
 import { WishlistContext } from './WishlistContext'
 
 export default function Navbar({ query, setQuery }) {
+
+    const navRef = useRef();
     const { cartItems } = useContext(CartContext)
     const { wishlistItems } = useContext(WishlistContext)
 
     const [suggestions, setSuggestions] = useState([])
     const [show, setShow] = useState(false)
     const navigate = useNavigate()
+   
 
     const handleSearch = (e) => {
 
@@ -17,6 +20,7 @@ export default function Navbar({ query, setQuery }) {
         if (query.trim()) {
             navigate(`/search?q=${query}`)
             setQuery('')
+            closeMenu()
         }
     }
 
@@ -41,7 +45,15 @@ export default function Navbar({ query, setQuery }) {
         setQuery('');
         setSuggestions([]);
         setShow(false);
+        closeMenu()
     };
+
+    const closeMenu = () => {
+        if (navRef.current?.classList.contains("show")) {
+            // Collapse the menu using Bootstrap's class
+            navRef.current.classList.remove("show");
+        }
+    }
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -84,7 +96,7 @@ export default function Navbar({ query, setQuery }) {
                             data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
                             <i className="fa-solid fa-bars fs-1"></i>
                         </button>
-                        <div className="offcanvas offcanvas-end mx-auto" tabIndex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
+                        <div className="offcanvas offcanvas-end mx-auto " ref={navRef}  tabIndex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
                             <div className="offcanvas-header px-4 pb-0">
                                 <a className="navbar-brand" href="index.html">
                                     <img src="images/main-logo.png" className="logo" />
@@ -96,23 +108,23 @@ export default function Navbar({ query, setQuery }) {
                                 <ul id="navbar"
                                     className="navbar-nav text-uppercase justify-content-start justify-content-lg-center align-items-start align-items-lg-center flex-grow-1">
                                     <li className="nav-item">
-                                        <NavLink className="nav-link me-4 active" to="/">Home</NavLink>
+                                        <NavLink className="nav-link me-4 active" to="/" onClick={closeMenu}>Home</NavLink>
                                     </li>
                                     <li className="nav-item">
-                                        <NavLink className="nav-link me-4" to="/about">About</NavLink>
+                                        <NavLink className="nav-link me-4" to="/about" onClick={closeMenu}>About</NavLink>
                                     </li>
 
                                     <li className="nav-item dropdown">
                                         <a className="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                                             aria-expanded="false">Genre</a>
                                         <ul className="dropdown-menu animate slide border">
-                                            <li> <NavLink to="/genre/Fiction" className="dropdown-item fw-light">Fiction</NavLink></li>
-                                            <li> <NavLink to="/genre/Non Fiction" className="dropdown-item fw-light">Non Fiction</NavLink></li>
-                                            <li> <NavLink to="/genre/Self Help" className="dropdown-item fw-light">Self Help</NavLink></li>
-                                            <li> <NavLink to="/genre/Fantasy" className="dropdown-item fw-light">Fantasy</NavLink></li>
-                                            <li> <NavLink to="/genre/Adventure" className="dropdown-item fw-light">Adventure</NavLink></li>
-                                            <li> <NavLink to="/genre/Biography" className="dropdown-item fw-light">Biography</NavLink></li>
-                                            <li> <NavLink to="/genre/Mystery" className="dropdown-item fw-light">Mystery</NavLink></li>
+                                            <li> <NavLink to="/genre/Fiction" className="dropdown-item fw-light" onClick={closeMenu}>Fiction</NavLink></li>
+                                            <li> <NavLink to="/genre/Non Fiction" className="dropdown-item fw-light" onClick={closeMenu}>Non Fiction</NavLink></li>
+                                            <li> <NavLink to="/genre/Self Help" className="dropdown-item fw-light" onClick={closeMenu}>Self Help</NavLink></li>
+                                            <li> <NavLink to="/genre/Fantasy" className="dropdown-item fw-light" onClick={closeMenu}>Fantasy</NavLink></li>
+                                            <li> <NavLink to="/genre/Adventure" className="dropdown-item fw-light" onClick={closeMenu}>Adventure</NavLink></li>
+                                            <li> <NavLink to="/genre/Biography" className="dropdown-item fw-light" onClick={closeMenu}>Biography</NavLink></li>
+                                            <li> <NavLink to="/genre/Mystery" className="dropdown-item fw-light" onClick={closeMenu}>Mystery</NavLink></li>
                                         </ul>
                                     </li>
 
@@ -134,6 +146,7 @@ export default function Navbar({ query, setQuery }) {
                                                     }}
                                                     onFocus={() => setShow(true)}
                                                     onBlur={() => setTimeout(() => setShow(false), 200)}
+                                                    
                                                 />
 
                                                 {/* suggestions */}
@@ -151,6 +164,7 @@ export default function Navbar({ query, setQuery }) {
                                                                         handleSuggestionClick(book);
                                                                     }
                                                                 }}
+                                                                
                                                             >{book.volumeInfo.title || ''}</span>
                                                         ))
                                                     }
