@@ -22,7 +22,7 @@ export default function About() {
               code.</p>
           </div>
           <div className='col-md-6'>
-            <img src="/img/library.jpg" alt=""
+            <img src="/Img/library.jpg" alt=""
               className='img-fluid border shadow-sm rounded'
               style={{ height: '500px', width: '90%' }}
             />
